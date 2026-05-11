@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Schnell Logistics – Precision Freight Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --yellow: #f5c200;
+      --white: #f2f0eb;
+      --gray: #1c1c1c;
+      --mid: #555;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #222;
+    }
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.08em;
+      color: var(--yellow);
+    }
+    .logo span { color: var(--white); }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+    nav ul li a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    nav ul li a:hover { opacity: 1; color: var(--yellow); }
+    .nav-cta {
+      background: var(--yellow);
+      color: var(--black) !important;
+      padding: 0.5rem 1.4rem;
+      font-weight: 500 !important;
+      opacity: 1 !important;
+      letter-spacing: 0.1em;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 60vw;
+      height: 100vh;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(245,194,0,0.03) 40px,
+        rgba(245,194,0,0.03) 80px
+      );
+      pointer-events: none;
+    }
+    .hero-text { max-width: 560px; }
+    .hero-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      height: 1px;
+      background: var(--yellow);
+    }
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 7vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.8rem;
+    }
+    h1 em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(242,240,235,0.65);
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; align-items: center; }
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 0.9rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,194,0,0.3); }
+    .btn-ghost {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: opacity 0.2s;
+    }
+    .btn-ghost:hover { opacity: 1; }
+
+    /* HERO VISUAL */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .truck-graphic {
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+    }
+    .stat {
+      padding: 3rem 2.5rem;
+      border-right: 1px solid #222;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(242,240,235,0.45);
+    }
+
+    /* SERVICES */
+    .services {
+      padding: 7rem 4rem;
+    }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4rem;
+    }
+    .section-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 0.8rem;
+    }
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .section-header p {
+      max-width: 340px;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(242,240,235,0.5);
+      text-align: right;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: #222;
+    }
+    .service-card {
+      background: var(--black);
+      padding: 3rem 2.5rem;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .service-card:hover { background: var(--gray); }
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .service-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.8rem;
+      color: var(--white);
+    }
+    .service-card p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: rgba(242,240,235,0.5);
+    }
+    .service-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5rem;
+      color: rgba(245,194,0,0.06);
+      line-height: 1;
+      margin-bottom: -1rem;
+    }
+
+    /* WHY US */
+    .why {
+      padding: 7rem 4rem;
+      background: var(--gray);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .why-text .section-tag { margin-bottom: 0.8rem; }
+    .why-text h2 { margin-bottom: 1.5rem; }
+    .why-text p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: rgba(242,240,235,0.6);
+      margin-bottom: 2.5rem;
+    }
+    .features { display: flex; flex-direction: column; gap: 1.2rem; }
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.2rem;
+      border: 1px solid #333;
+      transition: border-color 0.2s;
+    }
+    .feature:hover { border-color: var(--yellow); }
+    .feature-icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .feature h4 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.05em;
+    }
+    .feature p {
+      font-size: 0.82rem;
+      color: rgba(242,240,235,0.45);
+      line-height: 1.5;
+      margin: 0;
+    }
+    .why-visual {
+      position: relative;
+    }
+    .route-box {
+      background: var(--black);
+      border: 1px solid #333;
+      padding: 2rem;
+    }
+    .route-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      color: var(--yellow);
+      margin-bottom: 1.8rem;
+      text-transform: uppercase;
+    }
+    .route-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid #222;
+    }
+    .route-item:last-child { border-bottom: none; }
+    .route-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--yellow);
+      flex-shrink: 0;
+    }
+    .route-dot.active { background: #4caf50; box-shadow: 0 0 8px #4caf50; }
+    .route-info { flex: 1; }
+    .route-info strong {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 500;
+    }
+    .route-info span {
+      font-size: 0.75rem;
+      color: rgba(242,240,235,0.4);
+    }
+    .route-status {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #4caf50;
+      background: rgba(76,175,80,0.1);
+      padding: 0.2rem 0.6rem;
+    }
+    .route-status.transit { color: var(--yellow); background: rgba(245,194,0,0.1); }
+
+    /* CONTACT */
+    .contact {
+      padding: 7rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact::before {
+      content: 'SCHNELL';
+      position: absolute;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20vw;
+      color: rgba(245,194,0,0.03);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: 0.05em;
+    }
+    .contact .section-tag { margin-bottom: 1rem; }
+    .contact h2 { margin-bottom: 1rem; font-size: clamp(3rem, 5vw, 5rem); }
+    .contact > p {
+      font-size: 1rem;
+      color: rgba(242,240,235,0.5);
+      max-width: 500px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+    .contact-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      background: var(--gray);
+      border: 1px solid #333;
+      color: var(--white);
+      padding: 1rem 1.2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus,
+    .contact-form select:focus { border-color: var(--yellow); }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: rgba(242,240,235,0.3); }
+    .contact-form .full { grid-column: 1 / -1; }
+    .contact-form textarea { height: 120px; resize: none; }
+    .contact-form select option { background: var(--gray); }
+    .submit-btn {
+      grid-column: 1 / -1;
+      background: var(--yellow);
+      color: var(--black);
+      border: none;
+      padding: 1rem 2rem;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,194,0,0.3); }
+
+    /* FOOTER */
+    footer {
+      background: var(--gray);
+      border-top: 1px solid #2a2a2a;
+      padding: 3rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      color: var(--yellow);
+    }
+    .footer-logo span { color: var(--white); }
+    footer p {
+      font-size: 0.8rem;
+      color: rgba(242,240,235,0.3);
+    }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a {
+      color: rgba(242,240,235,0.4);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--yellow); }
+
+    /* ANIMATIONS */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.25s; }
+    .delay-3 { animation-delay: 0.4s; }
+    .delay-4 { animation-delay: 0.55s; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      nav ul { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; }
+      .hero-visual { display: none; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .services { padding: 5rem 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .section-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .section-header p { text-align: left; }
+      .why { grid-template-columns: 1fr; padding: 5rem 2rem; gap: 3rem; }
+      .contact { padding: 5rem 2rem; }
+      .contact-form { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">SCHNELL<span>LOGISTICS</span></div>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-tag fade-up">Pan-European Freight Solutions</div>
+      <h1 class="fade-up delay-1">MOVE <em>FASTER.</em><br>DELIVER <em>SMARTER.</em></h1>
+      <p class="fade-up delay-2">Schnell Logistics connects Germany to Europe with precision freight, real-time tracking, and zero-compromise reliability. From München to Madrid — we deliver.</p>
+      <div class="hero-btns fade-up delay-3">
+        <a href="#contact" class="btn-primary">Get a Free Quote</a>
+        <a href="#services" class="btn-ghost">Our Services →</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-up delay-4">
+      <svg class="truck-graphic" viewBox="0 0 500 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Road -->
+        <rect x="0" y="240" width="500" height="60" fill="#1c1c1c"/>
+        <rect x="60" y="268" width="80" height="6" rx="3" fill="#f5c200" opacity="0.4"/>
+        <rect x="210" y="268" width="80" height="6" rx="3" fill="#f5c200" opacity="0.4"/>
+        <rect x="360" y="268" width="80" height="6" rx="3" fill="#f5c200" opacity="0.4"/>
+        <!-- Truck body -->
+        <rect x="60" y="130" width="290" height="110" rx="4" fill="#2a2a2a" stroke="#444" stroke-width="1.5"/>
+        <!-- Cab -->
+        <rect x="350" y="155" width="110" height="85" rx="6" fill="#222" stroke="#444" stroke-width="1.5"/>
+        <!-- Cab window -->
+        <rect x="365" y="165" width="80" height="45" rx="3" fill="#f5c200" opacity="0.15"/>
+        <rect x="365" y="165" width="80" height="45" rx="3" stroke="#f5c200" stroke-width="1" opacity="0.4"/>
+        <!-- Logo on truck -->
+        <text x="120" y="195" font-family="'Bebas Neue', sans-serif" font-size="28" fill="#f5c200" letter-spacing="4" opacity="0.9">SCHNELL</text>
+        <text x="120" y="218" font-family="'Bebas Neue', sans-serif" font-size="14" fill="#888" letter-spacing="6">LOGISTICS</text>
+        <!-- Wheels -->
+        <circle cx="150" cy="245" r="22" fill="#111" stroke="#555" stroke-width="2"/>
+        <circle cx="150" cy="245" r="10" fill="#333" stroke="#f5c200" stroke-width="1.5"/>
+        <circle cx="290" cy="245" r="22" fill="#111" stroke="#555" stroke-width="2"/>
+        <circle cx="290" cy="245" r="10" fill="#333" stroke="#f5c200" stroke-width="1.5"/>
+        <circle cx="390" cy="245" r="22" fill="#111" stroke="#555" stroke-width="2"/>
+        <circle cx="390" cy="245" r="10" fill="#333" stroke="#f5c200" stroke-width="1.5"/>
+        <circle cx="435" cy="245" r="22" fill="#111" stroke="#555" stroke-width="2"/>
+        <circle cx="435" cy="245" r="10" fill="#333" stroke="#f5c200" stroke-width="1.5"/>
+        <!-- Speed lines -->
+        <line x1="0" y1="170" x2="50" y2="170" stroke="#f5c200" stroke-width="1.5" opacity="0.5"/>
+        <line x1="0" y1="185" x2="40" y2="185" stroke="#f5c200" stroke-width="1" opacity="0.3"/>
+        <line x1="0" y1="198" x2="30" y2="198" stroke="#f5c200" stroke-width="0.8" opacity="0.2"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="stat-num">18+</div><div class="stat-label">Countries Covered</div></div>
+    <div class="stat"><div class="stat-num">340K</div><div class="stat-label">Tonnes Delivered/Year</div></div>
+    <div class="stat"><div class="stat-num">99.4%</div><div class="stat-label">On-Time Rate</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Live Tracking</div></div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">What We Do</div>
+        <h2>FREIGHT<br>SOLUTIONS</h2>
+      </div>
+      <p>Every shipment is a commitment. We engineer logistics around your timelines, not ours.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-icon">🚛</div>
+        <h3>Full Truckload (FTL)</h3>
+        <p>Dedicated trucks for large shipments across all of Europe. Direct routes, zero handling, maximum security for your cargo.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-icon">📦</div>
+        <h3>Less-than-Truckload (LTL)</h3>
+        <p>Cost-efficient groupage freight for smaller loads. Consolidated routes that keep your logistics lean and budget intact.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-icon">⚡</div>
+        <h3>Express Delivery</h3>
+        <p>Time-critical shipments handled with urgency. Same-day dispatch, priority routing, and direct delivery across the DACH region.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <div class="service-icon">🏭</div>
+        <h3>Warehousing</h3>
+        <p>Modern storage facilities in Frankfurt, Munich, and Hamburg. Inventory management, cross-docking, and distribution services.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-icon">🌍</div>
+        <h3>Customs & Compliance</h3>
+        <p>Full documentation handling for intra-EU and international freight. Our experts ensure seamless border crossings every time.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <div class="service-icon">📡</div>
+        <h3>Live Tracking</h3>
+        <p>Real-time GPS visibility on every shipment. Client portal with ETA updates, route changes, and proof of delivery on arrival.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why" id="why">
+    <div class="why-text">
+      <div class="section-tag">Why Schnell</div>
+      <h2>GERMAN<br>PRECISION.<br>EUROPEAN<br>REACH.</h2>
+      <p>Founded in Hamburg in 1998, Schnell Logistics has grown from a regional carrier into one of Germany's most trusted pan-European freight partners. We combine the reliability of German engineering with the flexibility modern supply chains demand.</p>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🔒</div>
+          <div>
+            <h4>Insured & Certified</h4>
+            <p>Full cargo insurance, ISO 9001 certified, ADR-compliant for hazardous goods transport.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🌱</div>
+          <div>
+            <h4>Eco Fleet</h4>
+            <p>40% of our fleet runs on LNG and HVO100 biofuel. Carbon offset programs available on request.</p>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🤝</div>
+          <div>
+            <h4>Dedicated Account Manager</h4>
+            <p>Every client gets a single point of contact who knows your business inside out.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="why-visual">
+      <div class="route-box">
+        <div class="route-title">📡 Live Shipment Tracker</div>
+        <div class="route-item">
+          <div class="route-dot active"></div>
+          <div class="route-info">
+            <strong>Hamburg → Warsaw</strong>
+            <span>FTL · 14 pallets · Est. arrival: Today 18:00</span>
+          </div>
+          <span class="route-status">En Route</span>
+        </div>
+        <div class="route-item">
+          <div class="route-dot"></div>
+          <div class="route-info">
+            <strong>München → Lyon</strong>
+            <span>LTL · 6 pallets · Est. arrival: Tomorrow 09:30</span>
+          </div>
+          <span class="route-status transit">In Transit</span>
+        </div>
+        <div class="route-item">
+          <div class="route-dot active"></div>
+          <div class="route-info">
+            <strong>Frankfurt → Amsterdam</strong>
+            <span>Express · 2 pallets · Est. arrival: Today 21:00</span>
+          </div>
+          <span class="route-status">En Route</span>
+        </div>
+        <div class="route-item">
+          <div class="route-dot"></div>
+          <div class="route-info">
+            <strong>Berlin → Madrid</strong>
+            <span>FTL · 22 pallets · Departs Tomorrow 06:00</span>
+          </div>
+          <span class="route-status transit">Scheduled</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="section-tag">Get in Touch</div>
+    <h2>REQUEST A QUOTE</h2>
+    <p>Tell us about your shipment and we'll get back to you within 2 hours with a tailored freight solution.</p>
+    <div class="contact-form">
+      <input type="text" placeholder="Company Name" />
+      <input type="text" placeholder="Contact Person" />
+      <input type="email" placeholder="Email Address" class="full"/>
+      <select class="full">
+        <option value="" disabled selected>Service Type</option>
+        <option>Full Truckload (FTL)</option>
+        <option>Less-than-Truckload (LTL)</option>
+        <option>Express Delivery</option>
+        <option>Warehousing</option>
+        <option>Customs & Compliance</option>
+      </select>
+      <input type="text" placeholder="Origin (City / Country)" />
+      <input type="text" placeholder="Destination (City / Country)" />
+      <textarea placeholder="Additional details (cargo type, weight, dimensions, timeline...)" class="full"></textarea>
+      <button class="submit-btn">Send Request →</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <div class="footer-logo">SCHNELL<span>LOGISTICS</span></div>
+      <p style="margin-top:0.5rem;">Hafenstraße 12, 20459 Hamburg, Germany</p>
+    </div>
+    <p>© 2024 Schnell Logistics GmbH. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy</a>
+      <a href="#">Imprint</a>
+      <a href="#">Careers</a>
+    </div>
+  </footer>
+
+</body>
+</html>
